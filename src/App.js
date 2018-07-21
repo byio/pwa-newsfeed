@@ -19,10 +19,15 @@ const Page = ({ title }) => (
     <p>
       <Link to="/about">About</Link>
     </p>
-    <p>
-      <Link to="/">Home</Link>
-    </p>
   </div>
+);
+
+const Home = (props) => (
+  <Page title="Home" />
+);
+
+const About = (props) => (
+  <Page title="About" />
 );
 
 class App extends Component {
