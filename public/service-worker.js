@@ -4,14 +4,16 @@ const doCache = false;
 // name of cache
 const CACHE_NAME = 'pwa-newsfeed-cache-v1';
 
-// delete old caches that are not the current one
+// delete old caches
 self.addEventListener('activate', event => {
   const cacheWhiteList = [CACHE_NAME];
   event.waitUntil(
     caches.keys()
           .then(keyList => Promise.all(keyList.map(key => {
-            console.log(`Deleting cache: ${key}`);
-            return cache.delete(key);
+            if (!cacheWhiteList.includes(key)) {
+              console.log(`Deleting cache: ${key}`);
+              return cache.delete(key);
+            }
           })));
   );
 });
@@ -21,7 +23,7 @@ self.addEventListener('install', event => {
   if (doCache) {
     event.waitUntil(
       caches.open(CACHE_NAME)
-            .then(cache => {
+            .then(function (cache) {
               fetch('assets-manifest.json').then(response => { response.json() })
                                            .then(assets => {
                                              // open cache to cache files
@@ -29,8 +31,8 @@ self.addEventListener('install', event => {
                                                "/",
                                                assets["main.js"]
                                              ];
-                                             cache.addAll(urlsToCache);
                                              console.log(`Files cached!`);
+                                             cache.addAll(urlsToCache);
                                            })
             })
     );
@@ -43,7 +45,7 @@ self.addEventListener('fetch', event => {
   if (doCache) {
     event.respondWith(
       caches.match(event.request)
-            .then(response => {
+            .then(function (response) {
               return response || fetch(event.request);
             });
     );
