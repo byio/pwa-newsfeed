@@ -1,13 +1,17 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Card from './Card';
 
-it("renders correctly", () => {
-  const component = renderer.create(
-    <Card />
-  );
-  let tree = component.toJSON();
+// Enzyme config
+Enzyme.configure({ adapter: new Adapter() });
 
-  expect(tree).toMatchSnapshot();
+// Tests
+describe('Card Component', () => {
+  it('Should render text', () => {
+    const wrapper = shallow(<Card />);
+
+    expect(wrapper.text()).toEqual('Card component');
+  });
 });
