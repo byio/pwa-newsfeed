@@ -26,6 +26,18 @@ describe('CardList Component', () => {
         url: 'https://www.androidcentral.com/oneplus-just-surpassed-samsungs-sales-india-first-time',
         urlToImage: 'https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2018/05/oneplus-6-vs-galaxy-s9-plus-10.jpg?itok=9vBCskjM',
         publishedAt: '2018-07-31T04:30:02Z'
+      },
+      {
+        source: {
+          id: null,
+          name: 'Androidcentral.com'
+        },
+        author: 'Andrew Martonik',
+        title: 'title of article',
+        description: 'description of article',
+        url: 'https://www.androidcentral.com/oneplus-just-surpassed-samsungs-sales-india-first-time',
+        urlToImage: 'https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2018/05/oneplus-6-vs-galaxy-s9-plus-10.jpg?itok=9vBCskjM',
+        publishedAt: '2018-07-31T04:30:02Z'
       }
     ];
     const wrapper = shallow(<CardList news={mockNewsArray} />);
