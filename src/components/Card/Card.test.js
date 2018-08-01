@@ -9,23 +9,22 @@ Enzyme.configure({ adapter: new Adapter() });
 
 // Tests
 describe('Card Component', () => {
-  it('should render', () => {
-    const wrapper = shallow(<Card />);
-    expect(wrapper).toMatchSnapshot();
+  it('should render without throwing an error', () => {
+    // TODO
   });
-  it('should render text', () => {
-    const wrapper = shallow(<Card />);
-    expect(wrapper.text()).toEqual('Card component');
+  it('should have 2 sections wrapped by divs: .newsImgSection and .newsInfoSection', () =>{
+    // TODO
   });
-  it('should render an image', () => {
-    const mockNews = [
-      { id: 1, imgURL: 'http://via.placeholder.com/200x200'}
-    ];
-    const wrapper = shallow(
-      <Card
-        imgURL={mockNews.imgURL}
-      />
-    );
-    expect(wrapper.find(img).prop('src')).toEqual(mockNews.imgURL);
+  it('should have 1 img tag: .newImage', () => {
+    // TODO
+  });
+  it('should have 1 h2 tag: .title', () => {
+    // TODO
+  });
+  it('should have 1 p tag: .description ', () => {
+    // TODO
+  });
+  it('should have 1 span tag: .source', () => {
+    // TODO
   });
 });

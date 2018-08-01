@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Card = () => (
   <div>
-    Card component
+    Card Component
   </div>
 );
 
