@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
+
 import './App.css';
+import CardList from './components/CardList/CardList';
 
 const Page = ({ title }) => (
   <div className="App">
-    <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h2>{title}</h2>
-    </div>
-    <p className="App-intro">
-      This is the title page.
-    </p>
-    <p>
-      <Link to="/">Home</Link>
-    </p>
-    <p>
-      <Link to="/about">About</Link>
-    </p>
+    <ul className="nav">
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About</Link></li>
+    </ul>
   </div>
 );
 
 const Home = (props) => (
-  <Page title="Home" />
+  <div>
+    <Page title="Home" />
+    <CardList />
+  </div>
 );
 
 const About = (props) => (
-  <Page title="About" />
+  <div>
+    <Page title="About" />
+    <p>This is a newsfeed app built using <a href="https://reactjs.org">ReactJS</a> and the <a href="https://newsapi.org">NewsAPI</a> based on Progressive Web App (PWA) specifications.</p>
+  </div>
 );
 
 class App extends Component {
