@@ -8,7 +8,7 @@ const Card = () => (
 );
 
 Card.propTypes = {
-  
+  imgURL: PropTypes.string.isRequired
 };
 
 export default Card;
