@@ -9,22 +9,32 @@ Enzyme.configure({ adapter: new Adapter() });
 
 // Tests
 describe('Card Component', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<Card />);
+  });
   it('should render without throwing an error', () => {
-    // TODO
+    expect(wrapper.find('div.card').exists()).toBe(true);
   });
   it('should have 2 sections wrapped by divs: .newsImgSection and .newsInfoSection', () =>{
-    // TODO
+    expect(wrapper.find('div').length).toBe(2);
+    expect(wrapper.find('div.newsImgSection').exists()).toBe(true);
+    expect(wrapper.find('div.newsInfoSection').exists()).toBe(true);
   });
-  it('should have 1 img tag: .newImage', () => {
-    // TODO
+  it('should have 1 img tag: .newsImage', () => {
+    expect(wrapper.find('img').length).toBe(1);
+    expect(wrapper.find('img.newsImage').exists()).toBe(true);
   });
   it('should have 1 h2 tag: .title', () => {
-    // TODO
+    expect(wrapepr.find('h2').length).toBe(1);
+    expect(wrapper.find('h2.title').exists()).toBe(true);
   });
   it('should have 1 p tag: .description ', () => {
-    // TODO
+    expect(wrapper.find('p').length).toBe(1);
+    expect(wrapper.find('p.description').exists()).toBe(true);
   });
   it('should have 1 span tag: .source', () => {
-    // TODO
+    expect(wrapper.find('span').length).toBe(1);
+    expect(wrapper.find('span.source').exists()).toBe(true);
   });
 });
