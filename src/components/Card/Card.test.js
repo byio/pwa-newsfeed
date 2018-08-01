@@ -9,9 +9,11 @@ Enzyme.configure({ adapter: new Adapter() });
 
 // Tests
 describe('Card Component', () => {
+  const wrapper = shallow(<Card />);
+  it('should render', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should render text', () => {
-    const wrapper = shallow(<Card />);
-
     expect(wrapper.text()).toEqual('Card component');
   });
 });
