@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import './App.css';
 import Home from './pages/Home';
@@ -12,6 +13,17 @@ class App extends Component {
       newsArticles: [],
       newsSource: ''
     }
+  }
+
+  componentDidMount () {
+    const getArticles = axios.create({
+      baseURL: `https://newsapi.org/v2/top-headlines?country=us`,
+      headers: { 'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY }
+    });
+    getArticles.get()
+      .then(res => {
+        console.log(res);
+      })
   }
 
   render() {
