@@ -6,6 +6,14 @@ import Home from './pages/Home';
 import About from './pages/About';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      newsArticles: [],
+      newsSource: ''
+    }
+  }
+
   render() {
     return (
       <Router>
