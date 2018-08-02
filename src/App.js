@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import './App.css';
-import CardList from './components/CardList/CardList';
-
-const Page = ({ title }) => (
-  <div className="App">
-    <ul className="nav">
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/about">About</Link></li>
-    </ul>
-  </div>
-);
-
-const Home = (props) => (
-  <div>
-    <Page title="Home" />
-    <CardList />
-  </div>
-);
-
-const About = (props) => (
-  <div>
-    <Page title="About" />
-    <p>This is a newsfeed app built using <a href="https://reactjs.org">ReactJS</a> and the <a href="https://newsapi.org">NewsAPI</a> based on Progressive Web App (PWA) specifications.</p>
-  </div>
-);
+import Home from './pages/Home';
+import About from './pages/About';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      newsArticles: [],
+      newsSource: ''
+    }
+  }
+
+  componentDidMount () {
+    const getArticles = axios.create({
+      baseURL: `https://newsapi.org/v2/top-headlines?country=us`,
+      headers: { 'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY }
+    });
+    getArticles.get()
+      .then(res => {
+        console.log(res);
+      })
+  }
+
   render() {
     return (
       <Router>
