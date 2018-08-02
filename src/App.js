@@ -28,9 +28,15 @@ class App extends Component {
       .then(res => {
         console.log(res);
       })
+      .catch(error => {
+        console.log(error);
+      })
     getSources.get()
       .then(res => {
         console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
       })
   }
 
