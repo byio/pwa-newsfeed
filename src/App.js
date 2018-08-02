@@ -20,7 +20,15 @@ class App extends Component {
       baseURL: `https://newsapi.org/v2/top-headlines?country=us`,
       headers: { 'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY }
     });
+    const getSources = axios.create({
+      baseURL: `https://newsapi.org/v2/sources`,
+      headers: { 'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY }
+    });
     getArticles.get()
+      .then(res => {
+        console.log(res);
+      })
+    getSources.get()
       .then(res => {
         console.log(res);
       })
