@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       newsArticles: [],
-      newsSource: ''
+      newsSources: []
     }
   }
 
@@ -33,7 +33,9 @@ class App extends Component {
       })
     getSources.get()
       .then(res => {
-        console.log(res);
+        this.setState({
+          newsSources: res.data.sources
+        });
       })
       .catch(error => {
         console.log(error);
@@ -41,6 +43,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <Router>
         <div>
