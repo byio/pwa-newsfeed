@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import Dropdown from './Dropdown';
@@ -38,5 +38,16 @@ describe('Select Component', () => {
     ];
     const wrapper = shallow(<Dropdown sources={mockSources} />);
     expect(wrapper.find('option').length).toBe(mockSources.length + 1);
+  });
+  it('should call onChange prop with input value', () => {
+    const value = "test-value";
+    const onSelectMock = jest.fn();
+    const component = mount(
+      <Dropdown handleChange={onSelectMock} />
+    );
+    component.find('select').simulate('change', {
+      target: { value },
+    });
+    expect(onSelectMock).toBeCalledWith(value);
   });
 });
