@@ -13,10 +13,9 @@ describe('Select Component', () => {
     const wrapper = shallow(<Dropdown />);
     expect(wrapper.find('div.dropdown').exists()).toBe(true);
   });
-  it('should have 1 select tag with a default value of and empty string', () => {
+  it('should have 1 select tag', () => {
     const wrapper = shallow(<Dropdown />);
     expect(wrapper.find('select').exists()).toBe(true);
-    expect(wrapper.find('select').value()).toBe('');
   });
   it('should render at least 1 option tag', () => {
     const wrapper = shallow(<Dropdown />);
@@ -43,7 +42,9 @@ describe('Select Component', () => {
   it('should call onChange prop with input value', () => {
     const value = "test-value";
     const onSelectMock = jest.fn();
-    const component = mount(<Dropdown onChange={onSelectMock} />);
+    const component = mount(
+      <Dropdown handleChange={onSelectMock} />
+    );
     component.find('select').simulate('change', {
       target: { value },
     });
