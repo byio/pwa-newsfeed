@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import Dropdown from './Dropdown';
@@ -13,9 +13,10 @@ describe('Select Component', () => {
     const wrapper = shallow(<Dropdown />);
     expect(wrapper.find('div.dropdown').exists()).toBe(true);
   });
-  it('should have 1 select tag', () => {
+  it('should have 1 select tag with a default value of and empty string', () => {
     const wrapper = shallow(<Dropdown />);
     expect(wrapper.find('select').exists()).toBe(true);
+    expect(wrapper.find('select').value()).toBe('');
   });
   it('should render at least 1 option tag', () => {
     const wrapper = shallow(<Dropdown />);
@@ -38,5 +39,14 @@ describe('Select Component', () => {
     ];
     const wrapper = shallow(<Dropdown sources={mockSources} />);
     expect(wrapper.find('option').length).toBe(mockSources.length + 1);
+  });
+  it('should call onChange prop with input value', () => {
+    const value = "test-value";
+    const onSelectMock = jest.fn();
+    const component = mount(<Dropdown onChange={onSelectMock} />);
+    component.find('select').simulate('change', {
+      target: { value },
+    });
+    expect(onSelectMock).toBeCalledWith(value);
   });
 });
