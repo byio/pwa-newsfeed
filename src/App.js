@@ -11,11 +11,11 @@ class App extends Component {
     super();
     this.state = {
       newsArticles: [],
-      newsSources: []
+      selectedSource: ''
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const getArticles = axios.create({
       baseURL: `https://newsapi.org/v2/top-headlines?country=us`,
       headers: { 'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY }
@@ -33,9 +33,7 @@ class App extends Component {
       })
     getSources.get()
       .then(res => {
-        this.setState({
-          newsSources: res.data.sources
-        });
+        console.log(res);
       })
       .catch(error => {
         console.log(error);
@@ -43,7 +41,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <Router>
         <div>
